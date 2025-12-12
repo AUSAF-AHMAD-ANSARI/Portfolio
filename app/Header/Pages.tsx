@@ -14,7 +14,7 @@ export default function Header() {
     { value: 600, label: "Problems \nSolved" },
   ];
 
-  const countRefs = useRef([]);
+  const countRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
   useEffect(() => {
     countRefs.current.forEach((el, index) => {
@@ -134,7 +134,9 @@ export default function Header() {
         {statsData.map((stat, index) => (
           <div key={index} className="flex ap- items-center">
             <h1
-              ref={(el) => (countRefs.current[index] = el)}
+              ref={(el) => {
+                countRefs.current[index] = el;
+              }}
               className="text-2xl font-unbounded font-bold"
             >
               0
